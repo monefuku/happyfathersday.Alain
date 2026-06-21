@@ -7,10 +7,10 @@
 body {
   margin: 0;
   min-height: 100vh;
-  background: linear-gradient(180deg, #dff5ff, #9edcff, #62bdf5);
+  background: linear-gradient(180deg, #dff6ff, #9edcff, #5bb8f0);
   font-family: Arial, sans-serif;
-  color: #07539b;
   text-align: center;
+  color: #07539b;
   overflow-x: hidden;
 }
 
@@ -20,58 +20,78 @@ body {
 
 h1 {
   font-size: 3.5rem;
-  color: #0b63c7;
+  color: #0967d2;
   margin-bottom: 20px;
-  letter-spacing: 2px;
-}
-
-.subtitle {
-  font-size: 1.2rem;
-  margin-bottom: 30px;
 }
 
 .gift {
-  font-size: 120px;
+  width: 170px;
+  height: 140px;
+  background: #2494ff;
+  margin: 30px auto;
+  border-radius: 15px;
+  position: relative;
   cursor: pointer;
-  transition: 0.3s;
+  box-shadow: 0 15px 30px rgba(0,0,0,0.25);
 }
 
-.gift:hover {
-  transform: scale(1.1);
+.gift:before {
+  content: "";
+  position: absolute;
+  width: 35px;
+  height: 140px;
+  background: #004aad;
+  left: 68px;
+  top: 0;
 }
 
-.message {
+.gift:after {
+  content: "🎀";
+  position: absolute;
+  font-size: 70px;
+  top: -55px;
+  left: 48px;
+}
+
+.tap {
+  font-size: 1.3rem;
+  font-style: italic;
+}
+
+.reveal {
   display: none;
   background: white;
-  color: #064f9e;
-  max-width: 650px;
+  max-width: 750px;
   margin: 30px auto;
   padding: 30px;
-  border-radius: 25px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-  font-size: 1.3rem;
-  line-height: 1.7;
+  border-radius: 30px;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.25);
+  animation: fadeIn 1s ease;
 }
 
-.ticket {
-  margin-top: 20px;
-  padding: 20px;
-  border: 3px dashed #0b63c7;
-  border-radius: 20px;
-  background: #eaf7ff;
-}
-
-.ticket h2 {
-  margin-top: 0;
+.reveal h2 {
   color: #0b63c7;
+  font-size: 1.8rem;
+}
+
+.reveal p {
+  font-size: 1.2rem;
+  line-height: 1.6;
+}
+
+.ticket-img {
+  width: 100%;
+  max-width: 650px;
+  border-radius: 15px;
+  margin: 20px 0;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.25);
 }
 
 .confetti {
   position: fixed;
   top: -10px;
   width: 10px;
-  height: 10px;
-  background: #0b63c7;
+  height: 14px;
   animation: fall 3s linear forwards;
   z-index: 999;
 }
@@ -80,6 +100,17 @@ h1 {
   to {
     transform: translateY(110vh) rotate(720deg);
     opacity: 0;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 </style>
@@ -91,58 +122,48 @@ h1 {
 
   <h1>HAPPY FATHER'S DAY</h1>
 
-  <div class="subtitle">
-    Tap the blue present to open your surprise
-  </div>
+  <div class="gift" onclick="openGift()"></div>
 
-  <div class="gift" onclick="openGift()">
-    🎁
-  </div>
+  <div class="tap">Tap the gift!</div>
 
-  <div class="message" id="message">
-
-    <h2>Dear Alain 💙</h2>
+  <div class="reveal" id="reveal">
+    <h2>💙 For all the gratitude 💙</h2>
 
     <p>
-      For all the gratitude, we would like to give you a ticket for
+      We would like to give you a ticket for
       <strong>Les Nuits Guitares</strong>.
     </p>
 
-    <div class="ticket">
-      <h2>🎸 Les Nuits Guitares 2026 🎸</h2>
+    <img class="ticket-img" src="IMG_6255.jpeg" alt="Les Nuits Guitares ticket">
 
-      <p>
-        A special ticket for music, relaxation, and beautiful memories.
-      </p>
+    <p>
+      We hope this brings you joy, music, and wonderful memories.
+    </p>
 
-      <p>
-        With love and gratitude 💙
-      </p>
-    </div>
-
+    <p>
+      Enjoy, relax, and have an amazing time! 💙
+    </p>
   </div>
 
 </div>
 
 <script>
 function openGift() {
-  document.getElementById("message").style.display = "block";
+  document.getElementById("reveal").style.display = "block";
   createConfetti();
 }
 
 function createConfetti() {
-  for (let i = 0; i < 80; i++) {
-    let confetti = document.createElement("div");
-    confetti.className = "confetti";
-
-    confetti.style.left = Math.random() * 100 + "vw";
-    confetti.style.backgroundColor = randomColor();
-    confetti.style.animationDuration = (2 + Math.random() * 3) + "s";
-
-    document.body.appendChild(confetti);
+  for (let i = 0; i < 100; i++) {
+    const c = document.createElement("div");
+    c.className = "confetti";
+    c.style.left = Math.random() * 100 + "vw";
+    c.style.backgroundColor = randomColor();
+    c.style.animationDuration = (2 + Math.random() * 3) + "s";
+    document.body.appendChild(c);
 
     setTimeout(() => {
-      confetti.remove();
+      c.remove();
     }, 5000);
   }
 }
