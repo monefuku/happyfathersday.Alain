@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Happy Father's Day Alain 💙</title>
+
+<style>
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: linear-gradient(180deg, #dff5ff, #9edcff, #62bdf5);
+  font-family: Arial, sans-serif;
+  color: #07539b;
+  text-align: center;
+  overflow-x: hidden;
+}
+
+.container {
+  padding: 50px 20px;
+}
+
+h1 {
+  font-size: 3.5rem;
+  color: #0b63c7;
+  margin-bottom: 20px;
+  letter-spacing: 2px;
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+}
+
+.gift {
+  font-size: 120px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.gift:hover {
+  transform: scale(1.1);
+}
+
+.message {
+  display: none;
+  background: white;
+  color: #064f9e;
+  max-width: 650px;
+  margin: 30px auto;
+  padding: 30px;
+  border-radius: 25px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  font-size: 1.3rem;
+  line-height: 1.7;
+}
+
+.ticket {
+  margin-top: 20px;
+  padding: 20px;
+  border: 3px dashed #0b63c7;
+  border-radius: 20px;
+  background: #eaf7ff;
+}
+
+.ticket h2 {
+  margin-top: 0;
+  color: #0b63c7;
+}
+
+.confetti {
+  position: fixed;
+  top: -10px;
+  width: 10px;
+  height: 10px;
+  background: #0b63c7;
+  animation: fall 3s linear forwards;
+  z-index: 999;
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(110vh) rotate(720deg);
+    opacity: 0;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <h1>HAPPY FATHER'S DAY</h1>
+
+  <div class="subtitle">
+    Tap the blue present to open your surprise
+  </div>
+
+  <div class="gift" onclick="openGift()">
+    🎁
+  </div>
+
+  <div class="message" id="message">
+
+    <h2>Dear Alain 💙</h2>
+
+    <p>
+      For all the gratitude, we would like to give you a ticket for
+      <strong>Les Nuits Guitares</strong>.
+    </p>
+
+    <div class="ticket">
+      <h2>🎸 Les Nuits Guitares 2026 🎸</h2>
+
+      <p>
+        A special ticket for music, relaxation, and beautiful memories.
+      </p>
+
+      <p>
+        With love and gratitude 💙
+      </p>
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+function openGift() {
+  document.getElementById("message").style.display = "block";
+  createConfetti();
+}
+
+function createConfetti() {
+  for (let i = 0; i < 80; i++) {
+    let confetti = document.createElement("div");
+    confetti.className = "confetti";
+
+    confetti.style.left = Math.random() * 100 + "vw";
+    confetti.style.backgroundColor = randomColor();
+    confetti.style.animationDuration = (2 + Math.random() * 3) + "s";
+
+    document.body.appendChild(confetti);
+
+    setTimeout(() => {
+      confetti.remove();
+    }, 5000);
+  }
+}
+
+function randomColor() {
+  const colors = ["#0b63c7", "#4fc3ff", "#ffffff", "#1d8fe3", "#003f88"];
+  return colors[Math.floor(Math.random() * colors.length)];
+}
+</script>
+
+</body>
+</html>
